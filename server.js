@@ -8,6 +8,11 @@ const app = express();
 const  port =process.env.PORT || 3100; 
 
 
+app.get('/', (req, res) => {
+  let result = " Bonjour Caculette , add , diff , provide a and b as argument  "
+   res.json(result)
+})
+
 app.get('/add', (req, res) => {
     let filter = req.query
       cl (" filter " , filter )
