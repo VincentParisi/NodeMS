@@ -1,7 +1,12 @@
 steps:
+  # Docker Build
   - name: gcr.io/cloud-builders/docker
-    args: [build, '-t', 'europe-west1-docker.pkg.dev/${PROJECT_ID}/master-build/nodems:latest', '.']
-images:
-  - 'europe-west1-docker.pkg.dev/${PROJECT_ID}/master-build/nodems:latest'
+    args: [build, '-t', 'europe-west1-docker.pkg.dev/${PROJECT_ID}/master-build/nodems', '.']
+
+  # Docker Push
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'europe-west1-docker.pkg.dev/${PROJECT_ID}/master-build/nodems']
+
 options: 
   logging: CLOUD_LOGGING_ONLY
+
