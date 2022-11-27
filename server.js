@@ -1,11 +1,21 @@
 require('dotenv').config();
-var express = require('express');
+const express = require('express');
+const cors = require("cors")
 
 const  cl = console.log 
 
 
 const app = express();
 const  port =process.env.PORT || 3100; 
+
+app.use(cors())
+app.use(express.json())
+app.use(
+  cors({
+    origin: "*",
+  })
+);
+
 
 
 app.get('/', (req, res) => {
