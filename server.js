@@ -1,7 +1,8 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require("cors")
-
+const https = require("https");
+const fs = require("fs");
 const  cl = console.log 
 
 
@@ -15,7 +16,6 @@ app.use(
     origin: "*",
   })
 );
-
 
 
 app.get('/', (req, res) => {
@@ -37,6 +37,19 @@ app.get('/add', (req, res) => {
        res.json(result)
  })
 
- app.listen(port, () => {
+/*app.listen(port, () => {
     cl (`Up and Running on port ${port} - This is Book service`);
 })
+*/
+
+https
+  .createServer(
+    {
+      key: fs.readFileSync("key.pem"),
+      cert: fs.readFileSync("cert.pem"),
+    },
+    app
+  )
+  .listen(port, ()=>{
+    console.log(`server is runing at port ${port}`)
+});
